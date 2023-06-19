@@ -2,23 +2,33 @@
  eliminar las letras contiguas repetidas y devolver el array ordenado de mayor a menor.
  Salida esperada era
  `['abababa','ab','ab']`
+ 
 */
 
-// Solución:
-function eliminarLetrasRepetidas(array) {
-  const resultado = array.map((str) => {
-    let newStr = "";
-    let prevChar = "";
-    for (let i = 0; i < str.length; i++) {
-      if (str[i] !== prevChar) {
-        newStr += str[i];
-        prevChar = str[i];
-      }
+const array = ['ab', 'abb', 'abbabbabbaa'];
+
+const sortedArray = [];
+
+function arrangeArray(a){
+    for(let i = 0; i < a.length; i++){
+        let element = arrangeArrayElement(a[i]);
+        sortedArray.push(element);
     }
-    return newStr;
-  });
-  return resultado.sort((a, b) => b.length - a.length);
+    sortedArray.sort((a, b) => b.length - a.length);
+    return sortedArray;
 }
-const array = ["ab", "abb", "abbabbabbaa"];
-const resultado = eliminarLetrasRepetidas(array);
-console.log(resultado);
+    
+
+function arrangeArrayElement(element){
+    let newElement = "";
+    let previous = "";
+    for (let i = 0; i < element.length; i++){
+        if (element[i]!= previous){
+            newElement += element[i];
+            previous = element[i];
+        }
+    }
+    return newElement;
+}
+
+console.log(arrangeArray(array));
